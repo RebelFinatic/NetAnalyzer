@@ -1,6 +1,7 @@
 import requests
 import socket
 import ipaddress
+import sys
 from ping3 import ping, verbose_ping
 
 # Gathers relevant information from an ip address
@@ -51,5 +52,10 @@ def check(ip):
     except Exception as e:
         print(f'Unexpected error: {e}')
 
-ip_or_domain = input("Please enter an IP or Domain: ")
-check(ip_or_domain)
+if len(sys.argv) == 2: # Check if user has passed a domain/ip as argument
+    check(sys.argv[1])  
+else:
+    ip_or_domain = input("Please enter an IP or Domain: ")
+    check(ip_or_domain)  
+
+
